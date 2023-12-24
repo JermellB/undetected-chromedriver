@@ -23,12 +23,12 @@ import re
 import sys
 import zipfile
 import string
-import random
 from distutils.version import LooseVersion
 from urllib.request import urlopen, urlretrieve
 
 from selenium.webdriver import Chrome as _Chrome
 from selenium.webdriver import ChromeOptions as _ChromeOptions
+import secrets
 
 logger = logging.getLogger(__name__)
 
@@ -232,7 +232,7 @@ class ChromeDriverManager(object):
 
     @staticmethod
     def random_cdc():
-        cdc = random.choices(string.ascii_lowercase, k=26)
+        cdc = secrets.SystemRandom().choices(string.ascii_lowercase, k=26)
         cdc[-6:-4] = map(str.upper, cdc[-6:-4])
         cdc[2] = cdc[0]
         cdc[3] = "_"
