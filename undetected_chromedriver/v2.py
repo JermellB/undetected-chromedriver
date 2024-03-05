@@ -422,8 +422,7 @@ class Patcher(object):
     def parse_exe_version(self):
         with io.open(self.target_path, "rb") as f:
             for line in iter(lambda: f.readline(), b""):
-                match = re.search(br"platform_handle\x00content\x00([0-9\.]*)", line)
-                if match:
+                if match := re.search(br"platform_handle\x00content\x00([0-9\.]*)", line):
                     return LooseVersion(match[1].decode())
 
     def fetch_package(self):
