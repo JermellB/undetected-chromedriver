@@ -337,7 +337,7 @@ class Chrome(object):
         except Exception:  # noqa
             pass
         try:
-            logger.debug("removing profile : %s" % self.user_data_dir)
+            logger.debug("removing profile : %s", self.user_data_dir)
             shutil.rmtree(self.user_data_dir, ignore_errors=False)
         except PermissionError:
             logger.debug("permission error. files are still in use/locked. retying...")
@@ -416,7 +416,7 @@ class Patcher(object):
         if self.version_main:
             path += f"_{self.version_main}"
         path = path.upper()
-        logger.debug("getting release number from %s" % path)
+        logger.debug("getting release number from %s", path)
         return LooseVersion(urlopen(self.url_repo + path).read().decode())
 
     def parse_exe_version(self):
@@ -433,7 +433,7 @@ class Patcher(object):
         :return: path to downloaded file
         """
         u = "%s/%s/%s" % (self.url_repo, self.version_full.vstring, self.zipname)
-        logger.debug("downloading from %s" % u)
+        logger.debug("downloading from %s", u)
         zp, *_ = urlretrieve(u, filename=self.zipname)
         return zp
 
@@ -443,7 +443,7 @@ class Patcher(object):
 
         :return: path to unpacked executable
         """
-        logger.debug("unzipping %s" % self.zipname)
+        logger.debug("unzipping %s", self.zipname)
         try:
             os.makedirs(os.path.dirname(self.target_path), mode=0o755)
         except OSError:
@@ -518,7 +518,7 @@ class Patcher(object):
         :return: False on failure, binary name on success
         """
 
-        logger.info("patching driver executable %s" % self.target_path)
+        logger.info("patching driver executable %s", self.target_path)
 
         linect = 0
         replacement = self.gen_random_cdc()
