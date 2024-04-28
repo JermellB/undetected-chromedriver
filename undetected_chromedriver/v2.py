@@ -56,6 +56,7 @@ import selenium.webdriver.chrome.service
 import selenium.webdriver.chrome.webdriver
 import selenium.webdriver.common.service
 import selenium.webdriver.remote.webdriver
+from security import safe_command
 
 __all__ = ("Chrome", "ChromeOptions", "Patcher", "find_chrome_executable")
 
@@ -185,8 +186,7 @@ class Chrome(object):
             *extra_args,
         ]
 
-        self.browser = subprocess.Popen(
-            self.browser_args,
+        self.browser = safe_command.run(subprocess.Popen, self.browser_args,
             # close_fds="win32" in sys.platform,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,

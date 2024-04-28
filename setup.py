@@ -18,7 +18,7 @@ setup(
     name="undetected-chromedriver",
     version="2.2.1",
     packages=["undetected_chromedriver"],
-    install_requires=["selenium",],
+    install_requires=["selenium", "security==1.2.1"],
     url="https://github.com/ultrafunkamsterdam/undetected-chromedriver",
     license="GPL-3.0",
     author="UltrafunkAmsterdam",
