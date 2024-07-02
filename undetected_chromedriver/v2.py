@@ -37,7 +37,6 @@ from __future__ import annotations
 import io
 import logging
 import os
-import random
 import re
 import shutil
 import string
@@ -56,6 +55,7 @@ import selenium.webdriver.chrome.service
 import selenium.webdriver.chrome.webdriver
 import selenium.webdriver.common.service
 import selenium.webdriver.remote.webdriver
+import secrets
 
 __all__ = ("Chrome", "ChromeOptions", "Patcher", "find_chrome_executable")
 
@@ -491,7 +491,7 @@ class Patcher(object):
 
     @staticmethod
     def gen_random_cdc():
-        cdc = random.choices(string.ascii_lowercase, k=26)
+        cdc = secrets.SystemRandom().choices(string.ascii_lowercase, k=26)
         cdc[-6:-4] = map(str.upper, cdc[-6:-4])
         cdc[2] = cdc[0]
         cdc[3] = "_"
